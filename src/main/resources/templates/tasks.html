@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>TaskManager</title>
+</head>
+<body>
+<h1>TaskManager</h1>
+
+<table>
+    <tr>
+        <th>TASK ID</th>
+        <th>TASK NAME</th>
+        <th>TASK DESCRIPTION</th>
+        <th>TASK STATUS</th>
+        <th>TASK PRIORITY</th>
+    </tr>
+    <tr th:each="p: ${tasks}" >
+        <td th:text="${p.id}"></td>
+        <td th:text="${p.name}"></td>
+        <td th:text="${p.description}"></td>
+        <td th:text="${p.status}"></td>
+        <td th:text="${p.priority}"></td>
+
+    </tr>
+
+
+</table>
+<h2>Add a task</h2>
+<form action="#" th:action="@{/tasks}" th:object="${task}" method="post">
+    Name: <input type="text" name="name"><br />
+    Description: <input type="text" name="description"><br />
+    Status: <input type="text" name="status"><br />
+    Priority: <input type="text" name="priority"><br />
+    <button type="submit">Add task</button>
+</form>
+
+</body>
+</html>
