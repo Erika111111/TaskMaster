@@ -1,14 +1,16 @@
-package ru.geekbrains.TaskManager.controller;
+package ru.erikaMit.TaskManager.controller;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.geekbrains.TaskManager.model.Task;
-import ru.geekbrains.TaskManager.model.TaskStatus;
-import ru.geekbrains.TaskManager.service.TaskService;
+import ru.erikaMit.TaskManager.model.Task;
+import ru.erikaMit.TaskManager.model.TaskStatus;
+import ru.erikaMit.TaskManager.service.TaskService;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/tasks")
@@ -22,9 +24,8 @@ public class TaskController {
      * @return
      */
     @GetMapping
-    public String getAllTask(Model model){
+    public String getAllTask(Model model) {
         model.addAttribute("tasks", taskService.getAllTasks());
-    //public List<Task> getAllTask(){
         return "tasks";
     }
 
@@ -35,7 +36,7 @@ public class TaskController {
      */
     @PostMapping
 
-    public Task addTask(@RequestBody Task task){
+    public Task addTask(@Valid @RequestBody Task task) {
 
         return taskService.addTask(task);
     }
@@ -47,7 +48,7 @@ public class TaskController {
      */
     @GetMapping("/status/{status}")
     @ResponseBody
-    public List<Task> getTasksByStatus(@PathVariable TaskStatus status){
+    public List<Task> getTasksByStatus(@PathVariable TaskStatus status) {
         return taskService.getTasksByStatus(status);
     }
 
@@ -59,9 +60,8 @@ public class TaskController {
      */
     @PutMapping("/{id}")
     @ResponseBody
-    public Task updateTaskStatus(@PathVariable Long id, @RequestBody Task task){
-        TaskStatus newTaskStatus = task.getStatus();
-        return taskService.updateTaskStatus(id);
+    public Task updateTaskStatus(@PathVariable UUID id, @Valid @RequestBody Task task) {
+        return taskService.updateTaskStatus(id, task.getStatus());
     }
 
     /**
@@ -70,7 +70,7 @@ public class TaskController {
      */
     @DeleteMapping("/{id}")
     @ResponseBody
-    public void deleteTask(@PathVariable Long id){
+    public void deleteTask(@PathVariable UUID id) {
         taskService.deleteTask(id);
     }
 }

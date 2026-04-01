@@ -1,4 +1,4 @@
-package ru.geekbrains.TaskManager.model;
+package ru.erikaMit.TaskManager.model;
 
 import lombok.Getter;
 

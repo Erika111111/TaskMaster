@@ -1,4 +1,4 @@
-package ru.geekbrains.TaskManager;
+package ru.erikaMit.TaskManager;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
