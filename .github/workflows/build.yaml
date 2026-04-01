@@ -23,7 +23,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Run Checkstyle
-        run: mvn -B checkstyle:check
+        run: ./mvnw -B checkstyle:check
 
       - name: Build with Maven
         run: ./mvnw clean -B install
