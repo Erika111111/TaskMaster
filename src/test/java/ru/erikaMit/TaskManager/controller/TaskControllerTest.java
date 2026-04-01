@@ -1,4 +1,4 @@
-package ru.geekbrains.TaskManager.controller;
+package ru.erikaMit.TaskManager.controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -6,8 +6,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.ui.Model;
-import ru.geekbrains.TaskManager.model.Task;
-import ru.geekbrains.TaskManager.service.TaskService;
+import ru.erikaMit.TaskManager.model.Task;
+import ru.erikaMit.TaskManager.service.TaskService;
 
 import java.util.Arrays;
 import java.util.List;
