@@ -4,18 +4,19 @@ import lombok.Getter;
 
 import java.util.UUID;
 
+
 @Getter
-public class IllegalArgumentException extends RuntimeException {
+public class TaskValidationException extends RuntimeException {
 
     private final UUID id;
 
 
-    public IllegalArgumentException(String message, UUID id) {
+    public TaskValidationException(String message, UUID id) {
         super(message);
         this.id = id;
 
     }
-    public IllegalArgumentException(String message) {
+    public TaskValidationException(String message) {
         super(message);
         this.id = null;
 

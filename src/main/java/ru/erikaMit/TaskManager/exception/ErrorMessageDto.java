@@ -5,6 +5,7 @@ import java.util.UUID;
 
 public record ErrorMessageDto(
     UUID id,
+    String errorType,
     String message,
     Instant timestamp
 ) { }
