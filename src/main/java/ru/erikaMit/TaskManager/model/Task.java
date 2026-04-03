@@ -2,8 +2,11 @@ package ru.erikaMit.TaskManager.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.UUID;
@@ -11,10 +14,13 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "tasks") // переопреление имени таблицы
+@Table(name = "tasks")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Task {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @NotBlank(message = "Task name is required")
@@ -22,22 +28,20 @@ public class Task {
     @Column(nullable = false)
     private String name;
 
+    @NotBlank(message = "Description is required")
+    @Size(max = 500)
     @Column(nullable = false)
     private String description;
 
-    @NotBlank(message = "Task status is required")
-    @Column
+    @NotNull(message = "Task status is required")
     @Enumerated(EnumType.STRING)
+    @Column
     private TaskStatus status;
 
-    @NotBlank(message = "Task priority is required")
-    @Column
+    @NotNull(message = "Task priority is required")
     @Enumerated(EnumType.STRING)
+    @Column
     private TaskPriority priority;
-
-
-
-
 
 
 }

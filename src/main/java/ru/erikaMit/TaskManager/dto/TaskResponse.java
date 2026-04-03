@@ -1,22 +1,20 @@
 package ru.erikaMit.TaskManager.dto;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 /**
- * запрос от клиента
+ * ответ для клиента
  */
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TaskRequest {
-    @NotBlank
+
+public class TaskResponse {
     private String name;
     private String description;
-
 }

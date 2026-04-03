@@ -1,13 +1,13 @@
 package ru.erikaMit.TaskManager.controller;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.ui.Model;
-import ru.erikaMit.TaskManager.model.Task;
+import ru.erikaMit.TaskManager.dto.TaskRequest;
+import ru.erikaMit.TaskManager.dto.TaskResponse;
 import ru.erikaMit.TaskManager.service.TaskService;
+
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,24 +28,43 @@ public class TaskControllerTest {
     }
 
     @Test
-    void testGelAllTasks(){
-        List<Task> tasks = Arrays.asList(new Task(), new Task());
+    void testGetAllTasks() {
+        // Подготовка
+        TaskResponse task1 = new TaskResponse();
+        task1.setName("Task 1");
+        TaskResponse task2 = new TaskResponse();
+        task2.setName("Task 2");
+        List<TaskResponse> tasks = Arrays.asList(task1, task2);
+
         when(taskService.getAllTasks()).thenReturn(tasks);
 
-        Model model = mock(Model.class);
-        String viewName = taskController.getAllTask(model);
-        assertEquals("tasks", viewName);
-        verify(model).addAttribute(eq("tasks"), eq(tasks));
+        // Вызов
+        List<TaskResponse> result = taskController.getAllTask();
+
+        // Проверка
+        assertEquals(2, result.size());
+        verify(taskService).getAllTasks();
     }
+
+
 
     @Test
     void testAddTask(){
-        Task task = new Task();
-        task.setName("New Task");
-        when(taskService.addTask(task)).thenReturn(task);
-        Task savedTask = taskController.addTask(task);
+        TaskRequest request = new TaskRequest();
+        request.setName("New Task");
+        request.setDescription("Description");
+
+        TaskResponse response = new TaskResponse();
+        response.setName("New Task");
+        response.setDescription("Description");
+
+        when(taskService.addTask(request)).thenReturn(response);
+
+        TaskResponse savedTask = taskController.createTask(request);
+
         assertNotNull(savedTask);
-        verify(taskService).addTask(task);
+        assertEquals("New Task", savedTask.getName());
+        verify(taskService).addTask(request);
     }
 }
 
