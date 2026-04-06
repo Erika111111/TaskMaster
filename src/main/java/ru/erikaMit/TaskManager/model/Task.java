@@ -38,6 +38,7 @@ public class Task {
     @Column
     private TaskStatus status;
     @NotNull(message = "Task priority is required")
+    @NotNull(message = "Task priority is required")
     @Enumerated(EnumType.STRING)
     @Column
     private TaskPriority priority;
