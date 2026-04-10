@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2-alter-task-table-add-created_at
+      author: erika
+      changes:
+        - addColumn:
+            tableName: tasks
+            columns:
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+

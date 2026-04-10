@@ -1,0 +1,50 @@
+databaseChangeLog:
+  - changeSet:
+      id: tag-0.0
+      author: erika
+      context: init
+      comment: "Tag for empty database"
+      changes:
+        - tagDatabase:
+            tag: v0
+
+
+  # создание таблицы tasks
+  - include:
+      file: v1/db-changelog-create-task-table.yaml
+      relativeToChangelogFile: true
+
+
+  - changeSet:
+      id: tag-1.0
+      author: erika
+      changes:
+        - tagDatabase:
+            tag: v1
+
+
+  - include:
+      file: v2/db-changelog-alter-task-table-add-column.yaml
+      relativeToChangelogFile: true
+
+
+  - changeSet:
+      id: tag-2.0
+      author: erika
+      changes:
+        - tagDatabase:
+            tag: v2
+
+
+
+  - include:
+      file: v3/db-changelog-add-column-updated_at.yml
+      relativeToChangelogFile: true
+
+
+  - changeSet:
+      id: tag-3.0
+      author: erika
+      changes:
+        - tagDatabase:
+            tag: v3

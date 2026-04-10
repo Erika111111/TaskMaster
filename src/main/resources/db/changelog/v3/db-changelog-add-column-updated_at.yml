@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3-table-add-updated_at
+      author: erika
+      changes:
+        - addColumn:
+            tableName: tasks
+            columns:
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+
