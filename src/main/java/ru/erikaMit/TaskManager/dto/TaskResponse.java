@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 /**
  * ответ для клиента
  */
@@ -17,4 +19,5 @@ import lombok.Setter;
 public class TaskResponse {
     private String name;
     private String description;
+    LocalDateTime createdAt;
 }
